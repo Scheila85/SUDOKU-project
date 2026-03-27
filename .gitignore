@@ -1,0 +1,15 @@
+### IntelliJ IDEA ###
+# Compilados
+*.class
+
+# Build
+out/
+target/
+bin/
+
+# IntelliJ
+.idea/
+*.iml
+
+# Logs
+*.log

@@ -78,7 +78,7 @@ public class Main {
                 }
             }
         }
-        System.out.println(Arrays.deepToString(boardMain));
+        //System.out.println(Arrays.deepToString(boardMain));
         System.out.println("The game is ready to start!");
     }
 
@@ -89,13 +89,13 @@ public class Main {
             return;
         }
 
-        System.out.println("Type the line number you wish to add the number.");
+        System.out.println("Type the number of line you wish to add the number");
         int line = currentNumberBetweenMinAndMax(1,9) -1;
 
-        System.out.println("Type the column number you wish to add the number.");
+        System.out.println("Type the column number you wish to add the number");
         int column = currentNumberBetweenMinAndMax(1,9) -1;
 
-        System.out.println("Type the value you wish to add in the small square.");
+        System.out.println("Type the value you wish to add in the small square");
         int value = currentNumberBetweenMinAndMax(1,9);
 
         if (!board.addNewNumber(value,line,column)){
@@ -110,10 +110,10 @@ public class Main {
             return;
         }
 
-        System.out.println("Type the line number you wish to remove a number.");
+        System.out.println("Type the number of line you wish to remove a number");
         int line = currentNumberBetweenMinAndMax(1,9) -1;
 
-        System.out.println("Type the column number you wish to remove a number.");
+        System.out.println("Type the column number you wish to remove a number");
         int column = currentNumberBetweenMinAndMax(1,9) -1;
 
         if (!board.removeANumber(line,column)){
@@ -139,7 +139,7 @@ public class Main {
             return;
         }
 
-        System.out.printf("Current game status: %s", board.statusGame());
+        System.out.printf("Current game status: %s\n", board.statusGame());
 
     }
 

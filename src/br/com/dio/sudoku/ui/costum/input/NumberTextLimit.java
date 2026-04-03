@@ -13,7 +13,7 @@ public class NumberTextLimit extends PlainDocument {
     public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
         if (str == null || !NUMBERS.contains(str)) return;
 
-        if (getLength() + str.length() <= 1) {
+        if (this.getLength() + str.length() <= 1) {
             super.insertString(offs, str, a);
         }
     }

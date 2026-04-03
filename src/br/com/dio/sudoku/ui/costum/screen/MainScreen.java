@@ -35,6 +35,39 @@ public class MainScreen {
         mainFrame.repaint();
     }
 
+    private void generateBlock(final SmallSquare[][] board, JPanel mainPanel) {
+        for (int line = 0; line < board.length; line+=3){
+            for (int column = 0; column < board[line].length; column+=3){
+                List<NumberTextField> textFields = new ArrayList<>();
+                for (int i=0; i<3; i++){
+                    for (int j=0; j<3; j++){
+                        SmallSquare smallSquare = board[line+i][column+j];
+                        NumberTextField ntf = new NumberTextField(smallSquare);
+                        fields[line+i][column+j] = ntf;
+                        textFields.add(ntf);
+                    }
+                }
+                SudokuBlock sudokuBlock = new SudokuBlock(textFields);
+                mainPanel.add(sudokuBlock);
+            }
+        }
+    }
+
+    private void updateBoardUI(final SmallSquare[][] board) {
+        for (int line = 0; line < board.length; line +=3) {
+            for (int column = 0; column < board[line].length; column +=3) {
+                for(int i=0; i < 3; i++) {
+                    for (int j=0; j<3; j++) {
+                        SmallSquare smallSquare = board[line+i][column+j];
+                        if (!smallSquare.getIsFixedValue()) {
+                            fields[line+i][column+j].setText("");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private void addCheckGameStatusButton(JPanel mainPanel) {
          checkGameStatusButton = new CheckGameStatusButton(e -> {
             StatusEnum gameStatus = boardService.statusGame();

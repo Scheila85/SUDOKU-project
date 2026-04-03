@@ -7,9 +7,11 @@ import static br.com.dio.sudoku.domain.StatusEnum.COMPLETE;
 
 public class Board {
 
-    private SmallSquare[][] board = new SmallSquare[9][9];
+    private SmallSquare[][] board; //= new SmallSquare[9][9];
 
-    public Board() {}
+    public Board(SmallSquare[][] board) {
+        this.board=board;
+    }
 
     public SmallSquare[][] getBoard() {
         return board;
@@ -99,7 +101,6 @@ public class Board {
 
     public boolean hasDuplicatesInColumn(){
 
-
         for (int column = 0; column < board.length; column++){
 
             Set<Integer> unicNumbersInColumn = new LinkedHashSet<>();
@@ -123,7 +124,6 @@ public class Board {
     public boolean hasDuplicatesInBlock3X3 (){
 
         for (int line = 0; line < board.length; line+=3){
-
             for (int column = 0; column < board[line].length; column+=3){
 
                 Set<Integer> unicBlockNumbers = new LinkedHashSet<>();

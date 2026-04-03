@@ -11,8 +11,8 @@ import java.util.Scanner;
 
 public class Main {
 
-    private final static Scanner sc = new Scanner(System.in);
-    private static Board board = new Board();
+    private static final Scanner sc = new Scanner(System.in);
+    private static Board board;
 
     public static void main(String[] args) {
 
@@ -78,6 +78,7 @@ public class Main {
                 }
             }
         }
+        board = new Board(boardMain);
         //System.out.println(Arrays.deepToString(boardMain));
         System.out.println("The game is ready to start!");
     }
@@ -192,14 +193,8 @@ public class Main {
     }
 
     public static boolean gameHasStarted (){
-        for (SmallSquare[] line : board.getBoard()){
-            for (SmallSquare columnSmallSquare : line){
-                if (columnSmallSquare == null){
-                    return false;
-                }
-            }
-        }
-        return true;
+
+        return board != null;
     }
 
 }

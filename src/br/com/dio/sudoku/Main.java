@@ -57,7 +57,7 @@ public class Main {
 
     private static void startGame(Map<String,Integer> positionsFixedValue) {
 
-        SmallSquare[][] boardMain = board.getBoard();
+        SmallSquare[][] boardMain = new SmallSquare[9][9];
 
         if (gameHasStarted()){
             System.out.println("The game has started!");

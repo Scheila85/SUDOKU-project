@@ -30,7 +30,7 @@ public class Main {
             System.out.println("1. Start Game");
             System.out.println("2. Put a new number");
             System.out.println("3. Remove a number");
-            System.out.println("4. See actual game");
+            System.out.println("4. See current game");
             System.out.println("5. Verify game status");
             System.out.println("6. Clear game");
             System.out.println("7. Finish game");
@@ -48,7 +48,7 @@ public class Main {
                 case 6 -> clearGame();
                 case 7 -> finishGame();
                 case 8 -> System.exit(0);
-                default -> System.out.println("Digite uma opção do menu.");
+                default -> System.out.println("Please select a valid menu option.");
 
             }
         }
@@ -89,17 +89,17 @@ public class Main {
             return;
         }
 
-        System.out.println("Type the number of line you wish to add the number");
+        System.out.println("Enter the row number where you want to add the value");
         int line = currentNumberBetweenMinAndMax(1,9) -1;
 
-        System.out.println("Type the column number you wish to add the number");
+        System.out.println("Enter the column number where you want to add the value");
         int column = currentNumberBetweenMinAndMax(1,9) -1;
 
-        System.out.println("Type the value you wish to add in the small square");
+        System.out.println("Enter the value you wish to add in the cell");
         int value = currentNumberBetweenMinAndMax(1,9);
 
         if (!board.addNewNumber(value,line,column)){
-            System.out.print("It's not possible change the square number, because it's a fixed number position.");
+            System.out.print("You cannot change this cell because it contains a fixed value.");
         }
     }
 
@@ -110,14 +110,14 @@ public class Main {
             return;
         }
 
-        System.out.println("Type the number of line you wish to remove a number");
+        System.out.println("Enter the row number where you want to remove a number");
         int line = currentNumberBetweenMinAndMax(1,9) -1;
 
-        System.out.println("Type the column number you wish to remove a number");
+        System.out.println("Enter the column number where you want to remove a number");
         int column = currentNumberBetweenMinAndMax(1,9) -1;
 
         if (!board.removeANumber(line,column)){
-            System.out.println("It's not possible change the square number, because it's a fixed number position.");
+            System.out.println("You cannot change this cell because it contains a fixed value.");
         }
     }
 
@@ -129,7 +129,7 @@ public class Main {
         }
 
         board.clearNumbers();
-        System.out.println("The board was restarted.");
+        System.out.println("Board reset successfully!");
     }
 
     private static void showGameStatus() {
@@ -195,7 +195,6 @@ public class Main {
 
         return board != null;
     }
-
 }
 
 

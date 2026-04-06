@@ -4,7 +4,6 @@ import br.com.dio.sudoku.domain.Board;
 import br.com.dio.sudoku.domain.SmallSquare;
 import br.com.dio.sudoku.util.BoardTemplate;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -156,7 +155,7 @@ public class Main {
         int currentBoardPos = 0;
         for (int i=0; i < boardMain.length; i++){
             for (int j=0; j < boardMain[i].length; j++){
-                currentBoardTemplate[currentBoardPos ++] = " " + ((boardMain[i][j].getActualValue()==0) ? " " : boardMain[i][j].getActualValue());
+                currentBoardTemplate[currentBoardPos ++] = " " + ((boardMain[i][j].getCurrentValue()==0) ? " " : boardMain[i][j].getCurrentValue());
             }
         }
 

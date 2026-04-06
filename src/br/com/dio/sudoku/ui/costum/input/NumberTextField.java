@@ -22,7 +22,7 @@ public class NumberTextField extends JTextField {
         this.setDocument(new NumberTextLimit());
         this.setEnabled(!smallSquare.getIsFixedValue());//altera se não for fixo
         if(smallSquare.getIsFixedValue()){
-            this.setText(Integer.toString(smallSquare.getActualValue()));
+            this.setText(Integer.toString(smallSquare.getCurrentValue()));
         }
 
         this.getDocument().addDocumentListener(new DocumentListener() {
@@ -44,10 +44,10 @@ public class NumberTextField extends JTextField {
 
             private void changeSmallSquare(){
                 if (getText().isEmpty()){
-                    smallSquare.setActualValue(0);
+                    smallSquare.setCurrentValue(0);
                     return;
                 }
-                smallSquare.setActualValue(Integer.parseInt(getText()));
+                smallSquare.setCurrentValue(Integer.parseInt(getText()));
             }
         });
     }

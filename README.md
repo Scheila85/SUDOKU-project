@@ -4,12 +4,16 @@
 
 Projeto de um jogo Sudoku desenvolvido em Java, com versão em terminal e interface gráfica.
 
-Este projeto faz parte do desafio de projeto do bootcamp **Backend Java com AWS** da DIO e foi desenvolvido com o objetivo de praticar:
+Este projeto foi desenvolvido durante o bootcamp **Backend Java com AWS** da DIO com foco em:
 
-- Manipulação de arrays 2D
-- Modelagem de classes
+- Modelagem orientada a objetos
+- Separação de responsabilidades (arquitetura em camadas)
+- Manipulação de estrutura de dados (arrays 2D)
+- Validação de regras de negócio
 - Entrada de dados via argumentos (args)
-- Aplicação de conceitos de arquitetura limpa
+- Desenvolvimento de interface gráfica com Java Swing
+
+O objetivo principal foi consolidar fundamentos de desenvolvimento backend e boas práticas de organização de código.
 
 O jogo Sudoku consiste em preencher um tabuleiro 9x9 com números de 1 a 9, respeitando as seguintes regras:
 

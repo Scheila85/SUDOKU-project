@@ -1,7 +1,5 @@
 package br.com.dio.sudoku;
 
-import br.com.dio.sudoku.ui.costum.frame.MainFrame;
-import br.com.dio.sudoku.ui.costum.panel.MainPanel;
 import br.com.dio.sudoku.ui.costum.screen.MainScreen;
 
 import java.awt.*;

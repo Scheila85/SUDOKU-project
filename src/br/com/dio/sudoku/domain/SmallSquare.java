@@ -24,6 +24,6 @@ public class SmallSquare {
 
     @Override
     public String toString() {
-        return String.format("SmallSquare{actualValue= %d, isFixedValue=%s}", currentValue,isFixedValue);
+        return String.format("SmallSquare{currentValue=%d, isFixedValue=%s}", currentValue,isFixedValue);
     }
 }

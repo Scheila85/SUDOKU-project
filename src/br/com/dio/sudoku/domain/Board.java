@@ -7,9 +7,11 @@ import static br.com.dio.sudoku.domain.StatusEnum.COMPLETE;
 
 public class Board {
 
-    private SmallSquare[][] board = new SmallSquare[9][9];
+    private SmallSquare[][] board; //= new SmallSquare[9][9];
 
-    public Board() {}
+    public Board(SmallSquare[][] board){
+        this.board=board;
+    }
 
     public SmallSquare[][] getBoard() {
         return board;
@@ -20,7 +22,7 @@ public class Board {
         SmallSquare smallSquare = board[line][column];
 
         if (!(smallSquare.getIsFixedValue())){
-            smallSquare.setActualValue(value);
+            smallSquare.setCurrentValue(value);
             return true;
         }
         return false;
@@ -31,7 +33,7 @@ public class Board {
         SmallSquare smallSquare = board[line][column];
 
         if (!(smallSquare.getIsFixedValue())){
-            smallSquare.setActualValue(0);
+            smallSquare.setCurrentValue(0);
             return true;
         }
         return false;
@@ -42,7 +44,7 @@ public class Board {
         for (SmallSquare[] line : board){
             for (SmallSquare columnSmallSquare : line){
                 if(!(columnSmallSquare.getIsFixedValue())){
-                    columnSmallSquare.setActualValue(0);
+                    columnSmallSquare.setCurrentValue(0);
                 }
             }
         }
@@ -57,7 +59,7 @@ public class Board {
             for (SmallSquare columnSmallSquare : line) {
 
                 if (!columnSmallSquare.getIsFixedValue()){
-                    if (columnSmallSquare.getActualValue() == 0) {
+                    if (columnSmallSquare.getCurrentValue() == 0) {
                         thereIsEmptySmallSquare = true;
                    } else {
                         thereIsActualValueGreaterThanZero = true;
@@ -83,7 +85,7 @@ public class Board {
 
             for (int column =0; column < board[line].length; column++){
 
-                int columnValue = board[line][column].getActualValue();
+                int columnValue = board[line][column].getCurrentValue();
 
                 if(columnValue != 0){
                     if (unicNumbersInLine.contains(columnValue)){
@@ -106,7 +108,7 @@ public class Board {
 
             for (int line = 0; line < board[column].length; line++){
 
-                int lineValue = board[line][column].getActualValue();
+                int lineValue = board[line][column].getCurrentValue();
 
                 if (lineValue != 0){
                     if (unicNumbersInColumn.contains(lineValue)){
@@ -131,7 +133,7 @@ public class Board {
                 for (int i = 0; i < 3; i++){
                     for (int j = 0; j < 3; j++){
 
-                        int blockValue = board[line + i][column + j].getActualValue();
+                        int blockValue = board[line + i][column + j].getCurrentValue();
 
                         if (blockValue != 0){
                             if (unicBlockNumbers.contains(blockValue)){
@@ -156,5 +158,4 @@ public class Board {
 
         return  statusGame() == COMPLETE && !hasErrors();
     }
-
 }

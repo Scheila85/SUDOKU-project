@@ -4,15 +4,14 @@ import br.com.dio.sudoku.domain.Board;
 import br.com.dio.sudoku.domain.SmallSquare;
 import br.com.dio.sudoku.util.BoardTemplate;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Main {
+public class Main{
 
-    private final static Scanner sc = new Scanner(System.in);
-    private static Board board = new Board();
+    private static final Scanner sc = new Scanner(System.in);
+    private static Board board;
 
     public static void main(String[] args) {
 
@@ -31,7 +30,7 @@ public class Main {
             System.out.println("1. Start Game");
             System.out.println("2. Put a new number");
             System.out.println("3. Remove a number");
-            System.out.println("4. See actual game");
+            System.out.println("4. See current game");
             System.out.println("5. Verify game status");
             System.out.println("6. Clear game");
             System.out.println("7. Finish game");
@@ -49,7 +48,7 @@ public class Main {
                 case 6 -> clearGame();
                 case 7 -> finishGame();
                 case 8 -> System.exit(0);
-                default -> System.out.println("Digite uma opção do menu.");
+                default -> System.out.println("Please select a valid menu option.");
 
             }
         }
@@ -57,7 +56,7 @@ public class Main {
 
     private static void startGame(Map<String,Integer> positionsFixedValue) {
 
-        SmallSquare[][] boardMain = board.getBoard();
+        SmallSquare[][] boardMain = new SmallSquare[9][9];
 
         if (gameHasStarted()){
             System.out.println("The game has started!");
@@ -78,6 +77,7 @@ public class Main {
                 }
             }
         }
+        board = new Board(boardMain);
         //System.out.println(Arrays.deepToString(boardMain));
         System.out.println("The game is ready to start!");
     }
@@ -89,17 +89,17 @@ public class Main {
             return;
         }
 
-        System.out.println("Type the number of line you wish to add the number");
+        System.out.println("Enter the row number where you want to add the value");
         int line = currentNumberBetweenMinAndMax(1,9) -1;
 
-        System.out.println("Type the column number you wish to add the number");
+        System.out.println("Enter the column number where you want to add the value");
         int column = currentNumberBetweenMinAndMax(1,9) -1;
 
-        System.out.println("Type the value you wish to add in the small square");
+        System.out.println("Enter the value you wish to add in the cell");
         int value = currentNumberBetweenMinAndMax(1,9);
 
         if (!board.addNewNumber(value,line,column)){
-            System.out.print("It's not possible change the square number, because it's a fixed number position.");
+            System.out.print("You cannot change this cell because it contains a fixed value.");
         }
     }
 
@@ -110,14 +110,14 @@ public class Main {
             return;
         }
 
-        System.out.println("Type the number of line you wish to remove a number");
+        System.out.println("Enter the row number where you want to remove a number");
         int line = currentNumberBetweenMinAndMax(1,9) -1;
 
-        System.out.println("Type the column number you wish to remove a number");
+        System.out.println("Enter the column number where you want to remove a number");
         int column = currentNumberBetweenMinAndMax(1,9) -1;
 
         if (!board.removeANumber(line,column)){
-            System.out.println("It's not possible change the square number, because it's a fixed number position.");
+            System.out.println("You cannot change this cell because it contains a fixed value.");
         }
     }
 
@@ -129,7 +129,7 @@ public class Main {
         }
 
         board.clearNumbers();
-        System.out.println("The board was restarted.");
+        System.out.println("Board reset successfully!");
     }
 
     private static void showGameStatus() {
@@ -155,12 +155,12 @@ public class Main {
         int currentBoardPos = 0;
         for (int i=0; i < boardMain.length; i++){
             for (int j=0; j < boardMain[i].length; j++){
-                currentBoardTemplate[currentBoardPos ++] = " " + ((boardMain[i][j].getActualValue()==0) ? " " : boardMain[i][j].getActualValue());
+                currentBoardTemplate[currentBoardPos ++] = " " + ((boardMain[i][j].getCurrentValue()==0) ? " " : boardMain[i][j].getCurrentValue());
             }
         }
 
         System.out.println("                                CURRENT GAME                          ");
-        System.out.printf(BoardTemplate.BOARD_TEMPLATE+"\n", currentBoardTemplate);//Aceita apenas args (array comum);
+        System.out.printf(BoardTemplate.BOARD_TEMPLATE+"\n", currentBoardTemplate);
 
     }
 
@@ -192,16 +192,9 @@ public class Main {
     }
 
     public static boolean gameHasStarted (){
-        for (SmallSquare[] line : board.getBoard()){
-            for (SmallSquare columnSmallSquare : line){
-                if (columnSmallSquare == null){
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 
+        return board != null;
+    }
 }
 
 

@@ -2,21 +2,20 @@ package br.com.dio.sudoku.domain;
 
 public class SmallSquare {
 
-    private int actualValue;
+    private int currentValue;
     private final boolean isFixedValue;
-    //VERIFICAR: diferenças entre final e static final sem ser um pertence a classe e outro ao obj
 
     public SmallSquare(int squareValue, final boolean isFixedValue){
-        this.actualValue=squareValue;
+        this.currentValue =squareValue;
         this.isFixedValue=isFixedValue;
     }
 
-    public int getActualValue() {
-        return actualValue;
+    public int getCurrentValue() {
+        return currentValue;
     }
 
-    public void setActualValue(int actualValue) {
-        this.actualValue = actualValue;
+    public void setCurrentValue(int currentValue) {
+        this.currentValue = currentValue;
     }
 
     public boolean getIsFixedValue(){
@@ -25,6 +24,6 @@ public class SmallSquare {
 
     @Override
     public String toString() {
-        return String.format("SmallSquare{actualValue= %d, isFixedValue=%s}", actualValue,isFixedValue);
+        return String.format("SmallSquare{actualValue= %d, isFixedValue=%s}", currentValue,isFixedValue);
     }
 }

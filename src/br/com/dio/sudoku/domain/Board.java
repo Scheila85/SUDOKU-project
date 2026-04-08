@@ -53,7 +53,7 @@ public class Board {
     public StatusEnum statusGame(){
 
         boolean thereIsEmptySmallSquare = false;
-        boolean thereIsActualValueGreaterThanZero = false;
+        boolean thereIsCurrentValueGreaterThanZero = false;
 
         for (SmallSquare[] line : board) {
             for (SmallSquare columnSmallSquare : line) {
@@ -62,16 +62,16 @@ public class Board {
                     if (columnSmallSquare.getCurrentValue() == 0) {
                         thereIsEmptySmallSquare = true;
                    } else {
-                        thereIsActualValueGreaterThanZero = true;
+                        thereIsCurrentValueGreaterThanZero = true;
                     }
                 }
-                if (thereIsEmptySmallSquare && thereIsActualValueGreaterThanZero){
+                if (thereIsEmptySmallSquare && thereIsCurrentValueGreaterThanZero){
                     return StatusEnum.INCOMPLETE;
                 }
             }
         }
 
-        if (!(thereIsEmptySmallSquare) && thereIsActualValueGreaterThanZero) {
+        if (!(thereIsEmptySmallSquare) && thereIsCurrentValueGreaterThanZero) {
             return COMPLETE;
         }
         return StatusEnum.UNSTARTED;
@@ -81,17 +81,17 @@ public class Board {
 
         for(int line =0; line < board.length; line++){
 
-            Set<Integer> unicNumbersInLine = new LinkedHashSet<>();
+            Set<Integer> uniqueNumbersInLine = new LinkedHashSet<>();
 
             for (int column =0; column < board[line].length; column++){
 
                 int columnValue = board[line][column].getCurrentValue();
 
                 if(columnValue != 0){
-                    if (unicNumbersInLine.contains(columnValue)){
+                    if (uniqueNumbersInLine.contains(columnValue)){
                         return true; //quebra os dois laços porque já achou a resposta;
                     } else {
-                        unicNumbersInLine.add(columnValue);
+                        uniqueNumbersInLine.add(columnValue);
                     }
                 }
             }
@@ -101,20 +101,19 @@ public class Board {
 
     public boolean hasDuplicatesInColumn(){
 
-
         for (int column = 0; column < board.length; column++){
 
-            Set<Integer> unicNumbersInColumn = new LinkedHashSet<>();
+            Set<Integer> uniqueNumbersInColumn = new LinkedHashSet<>();
 
             for (int line = 0; line < board[column].length; line++){
 
                 int lineValue = board[line][column].getCurrentValue();
 
                 if (lineValue != 0){
-                    if (unicNumbersInColumn.contains(lineValue)){
+                    if (uniqueNumbersInColumn.contains(lineValue)){
                         return true;
                     } else {
-                        unicNumbersInColumn.add(lineValue);
+                        uniqueNumbersInColumn.add(lineValue);
                     }
                 }
             }
@@ -128,7 +127,7 @@ public class Board {
 
             for (int column = 0; column < board[line].length; column+=3){
 
-                Set<Integer> unicBlockNumbers = new LinkedHashSet<>();
+                Set<Integer> uniqueBlockNumbers = new LinkedHashSet<>();
 
                 for (int i = 0; i < 3; i++){
                     for (int j = 0; j < 3; j++){
@@ -136,10 +135,10 @@ public class Board {
                         int blockValue = board[line + i][column + j].getCurrentValue();
 
                         if (blockValue != 0){
-                            if (unicBlockNumbers.contains(blockValue)){
+                            if (uniqueBlockNumbers.contains(blockValue)){
                                 return true;
                             } else {
-                                unicBlockNumbers.add(blockValue);
+                                uniqueBlockNumbers.add(blockValue);
                             }
                         }
                     }
